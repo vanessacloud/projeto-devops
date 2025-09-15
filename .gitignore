@@ -1,6 +1,170 @@
-# --- Terraform ---
-*.tfstate
-*.tfstate.*
-.terraform/
-.terraform.lock.hcl
-crash.log
+           (cole o conteúdo acima)
+           EOF
+
+       Windows (PowerShell):
+           notepad .gitignore
+           (cole o conteúdo acima e salve)
+
+
+5) Criar/Atualizar o README.md (na raiz)
+   Use este modelo inicial (edite conforme necessário):
+
+# DevOps Lab AWS
+
+Este repositório contém um projeto laboratorial que integra **GitHub, Docker, Terraform, Jenkins e Postman** em uma pipeline completa de DevOps na **AWS**.
+
+## Estrutura
+- `app/` → Aplicação exemplo (API Hello World).
+- `infra/` → Infraestrutura como Código (Terraform).
+- `tests/` → Testes automatizados (Postman/Newman).
+- `.github/workflows/` → Pipelines (GitHub Actions) — a partir do Dia 2.
+
+## Objetivo
+Ao longo de 10 dias, evoluiremos este projeto até termos um pipeline completo:
+1. Versionamento (GitHub)
+2. Testes (Postman)
+3. Containerização (Docker)
+4. Provisionamento (Terraform, AWS)
+5. CI/CD (Jenkins)
+
+## Requisitos
+- Git, Docker, Terraform, Jenkins, Postman
+- Conta AWS e GitHub
+
+## Como contribuir
+- Crie branchs por feature (ex.: feature/day1-setup)
+- Faça commits descritivos (padrão Conventional Commits é bem-vindo)
+- Abra Pull Requests com descrição do que foi alterado
+
+   Crie/edite o arquivo:
+       Linux/macOS:
+           cat > README.md << 'EOF'
+           (cole o conteúdo acima)
+           EOF
+
+       Windows (PowerShell):
+           notepad README.md
+           (cole o conteúdo acima e salve)
+
+
+6) (Opcional) Criar branch e Pull Request (PR)
+   Recomendação para prática de colaboração e revisão de código:
+
+   Criar branch de trabalho:
+       git checkout -b feature/day1-setup
+
+   Adicionar arquivos e commit:
+       git add .
+       git commit -m "chore: estrutura inicial do projeto (app/ infra/ tests/ workflows/ + README e .gitignore)"
+
+   Enviar a branch para o GitHub:
+       git push -u origin feature/day1-setup
+
+   Abrir PR:
+       - Vá ao repositório no GitHub, você verá o banner "Compare & pull request"
+       - Preencha título e descrição (o que foi feito, por quê, como testar)
+       - Marque revisores (se houver)
+       - Crie o PR
+
+   Alternativa (sem PR, direto na main):
+       git add .
+       git commit -m "chore: estrutura inicial do projeto"
+       git push origin main
+
+
+7) (Opcional) Configurar proteção de branch (main)
+   GitHub → Settings → Branches → Branch protection rules → Add rule
+   Recomendações iniciais:
+   - Require a pull request before merging
+   - Require approvals (1)
+   - Dismiss stale pull request approvals when new commits are pushed
+   - Require status checks to pass before merging (usaremos no Dia 2)
+   - Restrict who can push to matching branches (se necessário)
+
+
+Validação e Entregáveis
+-----------------------
+✓ O repositório existe no GitHub com nome e descrição
+✓ Estrutura de pastas criada: app/, infra/, tests/, .github/workflows/
+✓ Arquivos presentes: README.md e .gitignore
+✓ Commit(s) enviados ao GitHub
+✓ (Opcional) PR aberto para revisão
+
+Comandos úteis para validar localmente:
+- Ver estrutura (Linux/macOS): tree -L 2 (se tiver tree instalado) ou ls -la e ls -la .github/workflows
+- Ver histórico de commits: git log --oneline
+- Ver status do repo: git status
+- Ver remotos: git remote -v
+
+
+Boas Práticas Sugeridas
+-----------------------
+- Padrão de commits (Conventional Commits):
+  feat: nova funcionalidade
+  fix: correção de bug
+  chore: tarefas de manutenção (ex.: configs, cleanup)
+  docs: documentação
+  style: formatação que não altera comportamento
+  refactor: refatoração sem mudar funcionalidade
+
+- Nomes de branches:
+  feature/<nome>
+  fix/<nome>
+  chore/<nome>
+
+- PRs com descrição clara:
+  - O que foi feito
+  - Por que foi feito
+  - Como testar
+  - Riscos/impactos
+
+
+Erros Comuns e Soluções Rápidas
+-------------------------------
+1) "Permission denied (publickey)" ao clonar/push via SSH
+   - Verifique se sua chave pública está adicionada no GitHub.
+   - Teste conexão: ssh -T git@github.com
+   - Use HTTPS como alternativa temporária.
+
+2) "fatal: Authentication failed" via HTTPS
+   - Use token (PAT) em vez de senha.
+   - Atualize o credential helper: git config --global credential.helper store
+
+3) "remote: Repository not found."
+   - Verifique a URL do remote: git remote -v
+   - Corrija com: git remote set-url origin <url-correta>
+
+4) Arquivos sensíveis versionados por engano
+   - Adicione ao .gitignore
+   - Remova do histórico, se necessário (git rm --cached <arquivo> e novo commit)
+
+5) Conflitos ao fazer merge do PR
+   - Faça rebase/merge local, resolva conflitos, commit e push
+
+
+Critérios de Aceite do Dia 1 (Checklist para entrega)
+-----------------------------------------------------
+[ ] Repo criado no GitHub com nome adequado
+[ ] Estrutura de pastas conforme especificado
+[ ] README.md descritivo criado
+[ ] .gitignore com regras propostas
+[ ] Primeiro commit enviado
+[ ] (Opcional) PR aberto e link compartilhado
+
+Envie para validação:
+- Link do repositório
+- (Se houver) Link do Pull Request
+- Captura de tela da estrutura de pastas no GitHub
+
+
+Próximos Passos (Dia 2 — Integração Contínua inicial)
+-----------------------------------------------------
+No Dia 2, criaremos um workflow no GitHub Actions que, a cada push/PR:
+- Faz checkout do repositório
+- Valida a estrutura (passos básicos)
+- (Se a aplicação já existir) constrói a imagem Docker e roda um teste simples
+- Gera status check para o PR (gate de qualidade inicial)
+
+Mantenha a estrutura criada hoje — ela será usada diretamente no pipeline do Dia 2.
+
+eof
